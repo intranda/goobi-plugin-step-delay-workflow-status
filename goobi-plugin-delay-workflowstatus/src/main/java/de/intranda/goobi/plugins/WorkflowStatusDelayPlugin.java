@@ -32,7 +32,7 @@ import net.xeoh.plugins.base.annotations.PluginImplementation;
 public class WorkflowStatusDelayPlugin implements IDelayPlugin, IStepPlugin {
 
     @Getter
-    private String title = "intranda_delay_workflowstatus";
+    private String title = "intranda_step_delay_workflowstatus";
 
     @Getter
     private PluginType type = PluginType.Step;

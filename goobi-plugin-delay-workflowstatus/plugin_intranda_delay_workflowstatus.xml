@@ -1,0 +1,41 @@
+<config_plugin>
+    <!--
+    	order of configuration is: 
+	    1.) project name and step name matches 
+	    2.) step name matches and project is * 
+	    3.) project name matches and step name is * 
+	    4.) project name and step name are * 
+    -->
+    
+    <config>
+        <!-- which projects to use for (can be more then one, otherwise use *) -->
+        <project>*</project>
+        <step>*</step>
+        
+        <condition>
+	        <!-- name: name of t he property to check -->
+	        <!-- value: expected value (can be blank too) -->
+	        <!-- type: condition for value comparing, can be 'is' or 'not' or 'missing' or 'available' -->
+            <property name="" value="" type=""/>
+            
+            <!-- name: name of the workflow step to check -->
+            <!-- status: expected status, can be 'locked', 'open', 'inwork', 'done', 'deactivated' 'error'  -->
+            <!-- type: condition, can be 'is' 'not' or 'atleast' -->
+            <step name="" status="" type=""/>
+        </condition>
+    </config>
+   
+    <config>
+        <!-- which projects to use for (can be more then one, otherwise use *) -->
+        <project>Example</project>
+        <step>Delay Test</step>
+        
+        <condition>
+            <property name="Schrifttyp" value="Antiqua" type="is"/>
+            <property name="TemplateID" value="1" type="not"/>
+
+            <step name="Fileupload" status="done" type="is"/>
+            <step name="teststep" status="open" type="atleast"/>
+        </condition>
+    </config>    
+</config_plugin>

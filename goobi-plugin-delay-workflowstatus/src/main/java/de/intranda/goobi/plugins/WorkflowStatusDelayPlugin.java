@@ -115,17 +115,15 @@ public class WorkflowStatusDelayPlugin implements IDelayPlugin, IStepPlugin {
         boolean propertyCheckMatches = checkProperties(properties);
         boolean stepCheckMatches = checkSteps(steps);
 
-        LogEntry logEntry = new LogEntry();
-        logEntry.setCreationDate(new Date());
-        logEntry.setProcessId(step.getProzess().getId());
-        logEntry.setType(LogType.DEBUG);
-        logEntry.setUserName("delay");
 
         if (propertyCheckMatches && stepCheckMatches) {
-            logEntry.setContent("Checked delay: All conditions were fulfilled.");
-            ProcessManager.saveLogEntry(logEntry);
             return true;
         } else {
+            LogEntry logEntry = new LogEntry();
+            logEntry.setCreationDate(new Date());
+            logEntry.setProcessId(step.getProzess().getId());
+            logEntry.setType(LogType.DEBUG);
+            logEntry.setUserName("delay");
             logEntry.setContent("Checked delay: Not all conditions are fulfilled.");
             ProcessManager.saveLogEntry(logEntry);
             return false;

@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.SubnodeConfiguration;
 import org.apache.commons.lang.StringUtils;
-import org.goobi.beans.LogEntry;
 import org.goobi.beans.Process;
 import org.goobi.beans.Processproperty;
 import org.goobi.beans.Step;
@@ -19,9 +18,9 @@ import org.goobi.production.plugin.interfaces.IDelayPlugin;
 import org.goobi.production.plugin.interfaces.IStepPlugin;
 
 import de.sub.goobi.config.ConfigPlugins;
+import de.sub.goobi.helper.Helper;
 import de.sub.goobi.helper.enums.StepStatus;
 import de.sub.goobi.helper.exceptions.DAOException;
-import de.sub.goobi.persistence.managers.ProcessManager;
 import de.sub.goobi.persistence.managers.StepManager;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -54,13 +53,8 @@ public class WorkflowStatusDelayPlugin implements IDelayPlugin, IStepPlugin {
         //else :
 
         step.setBearbeitungsstatusEnum(StepStatus.INWORK);
-        LogEntry logEntry = new LogEntry();
-        logEntry.setContent("started delay.");
-        logEntry.setCreationDate(new Date());
-        logEntry.setProcessId(step.getProzess().getId());
-        logEntry.setType(LogType.DEBUG);
-        logEntry.setUserName("delay");
-        ProcessManager.saveLogEntry(logEntry);
+
+        Helper.addMessageToProcessJournal(step.getProzess().getId(), LogType.DEBUG, "started delay.", "delay");
 
         step.setBearbeitungsbeginn(new Date());
 
@@ -115,17 +109,10 @@ public class WorkflowStatusDelayPlugin implements IDelayPlugin, IStepPlugin {
         boolean propertyCheckMatches = checkProperties(properties);
         boolean stepCheckMatches = checkSteps(steps);
 
-
         if (propertyCheckMatches && stepCheckMatches) {
             return true;
         } else {
-            LogEntry logEntry = new LogEntry();
-            logEntry.setCreationDate(new Date());
-            logEntry.setProcessId(step.getProzess().getId());
-            logEntry.setType(LogType.DEBUG);
-            logEntry.setUserName("delay");
-            logEntry.setContent("Checked delay: Not all conditions are fulfilled.");
-            ProcessManager.saveLogEntry(logEntry);
+            Helper.addMessageToProcessJournal(step.getProzess().getId(), LogType.DEBUG, "Checked delay: Not all conditions are fulfilled.", "delay");
             return false;
         }
     }

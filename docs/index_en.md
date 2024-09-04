@@ -1,5 +1,5 @@
 ---
-title: Workflow status delay  
+title: Conditional workflow status delay  
 identifier: intranda_step_delay_workflow_status  
 description: Step Plugin for managing the delay of workflow status changes
 published: true  
@@ -38,8 +38,6 @@ The plugin is configured in the file `plugin_intranda_step_delay_workflowstatus.
 {{CONFIG_CONTENT}}  
   
 {{CONFIG_DESCRIPTION_PROJECT_STEP}}  
-  
-The `<config>` section is repeatable, allowing different configurations for various projects and steps. The configuration that applies can be defined using the two sub-elements `<project>` and `<step>`.  
   
 The `<condition>` field contains the rules to be checked. Both properties and steps can be checked. The fields within are repeatable to define multiple rules. In this case, all rules must be met for the condition to be considered fulfilled.  
   

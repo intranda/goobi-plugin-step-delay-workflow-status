@@ -1,5 +1,5 @@
 ---
-title: Verzögerung des Workflow Status
+title: Bedingte Verzögerung des Workflow Status
 identifier: intranda_step_delay_workflow_status
 description: Schritt-Plugin zur Verwaltung der Verzögerung von Workflow-Statusänderungen.
 published: true
@@ -38,8 +38,6 @@ Die Konfiguration des Plugins erfolgt in der Datei `plugin_intranda_step_delay_w
 {{CONFIG_CONTENT}}
 
 {{CONFIG_DESCRIPTION_PROJECT_STEP}}
-
-Der Bereich `<config>` ist wiederholbar und erlaubt so eine unterschiedliche Konfiguration in verschiedenen Projekten und Schritten. Welche Konfiguration gilt, kann mit Hilfe der beiden Unterelemente `<project>` und `<step>` festgelegt werden.
 
 Das Feld `<condition>` enthält die zu überprüfenden Regeln. Dabei können sowohl Eigenschaften als auch Schritte geprüft werden. Die darin enthaltenen Felder sind wiederholbar, um mehrere Regeln definieren zu können. In dem Fall müssen alle zutreffen, damit die Bedingung als erfüllt gilt.
 

@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.SubnodeConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.goobi.beans.GoobiProperty;
 import org.goobi.beans.Process;
 import org.goobi.beans.Processproperty;
 import org.goobi.beans.Step;
@@ -188,7 +189,7 @@ public class WorkflowStatusDelayPlugin implements IDelayPlugin, IStepPlugin {
                     return false;
                 }
                 boolean conditionMatches = false;
-                Processproperty pp = getProcessProperty(name);
+                GoobiProperty pp = getProcessProperty(name);
                 switch (propertyCondition) {
                     case "missing":
                         if (pp == null || StringUtils.isBlank(pp.getWert())) {
@@ -233,8 +234,8 @@ public class WorkflowStatusDelayPlugin implements IDelayPlugin, IStepPlugin {
     public void setDelay(long arg0) {
     }
 
-    private Processproperty getProcessProperty(String propertyName) {
-        for (Processproperty property : process.getEigenschaften()) {
+    private GoobiProperty getProcessProperty(String propertyName) {
+        for (GoobiProperty property : process.getEigenschaften()) {
             if (property.getTitel().equals(propertyName)) {
                 return property;
             }

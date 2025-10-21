@@ -3,6 +3,10 @@ title: Bedingte Verzögerung des Workflow Status
 identifier: intranda_step_delay_workflow_status
 description: Schritt-Plugin zur Verwaltung der Verzögerung von Workflow-Statusänderungen.
 published: true
+keywords:
+    - Goobi workflow
+    - Plugin
+    - Step Plugin
 ---
 
 ## Einführung

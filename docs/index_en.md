@@ -2,7 +2,11 @@
 title: Conditional workflow status delay  
 identifier: intranda_step_delay_workflow_status  
 description: Step Plugin for managing the delay of workflow status changes
-published: true  
+published: true
+keywords:
+    - Goobi workflow
+    - Plugin
+    - Step Plugin
 ---
 
 ## Introduction  
